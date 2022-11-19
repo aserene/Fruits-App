@@ -1,0 +1,11 @@
+/* #grad {
+    background-image: linear-gradient(to bottom right, rgb(213, 93, 171), rgb(215, 140, 0));
+} */
+
+body {
+    background: linear-gradient(to bottom right, rgb(205, 33, 145),orange);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    margin: 0;
+}
