@@ -93,10 +93,8 @@ app.get("/fruits/:id", (req, res) => {
     })
 })
 app.get("/fruits/:id/edit", (req, res) => {
-    // get the id from params
-    const id = req.params.id
     // get the fruit from the database
-    Fruit.findById(id, (err, fruit) => {
+    Fruit.findById(req.params.id, (err, fruit) => {
         // render template and send it fruit
         res.render("fruits/edit.ejs", {fruit})
     })
@@ -113,21 +111,16 @@ app.post("/fruits", (req, res) => {
 })
 //update route
 app.put("/fruits/:id", (req, res) => {
-    // get the id from params
-    const id = req.params.id
-    // check if the readyToEat property should be true or false
     req.body.readyToEat = req.body.readyToEat === "on" ? true : false
     // update the fruit
-    Fruit.findByIdAndUpdate(id, req.body, {new: true}, (err, fruit) => {
+    Fruit.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, fruit) => {
         // redirect user back to main page when fruit 
         res.redirect("/fruits")
     })
 })
 app.delete("/fruits/:id", (req, res) => {
-    // get the id from params
-    const id = req.params.id
-    // delete the fruit
-    Fruit.findByIdAndRemove(id, (err, fruit) => {
+
+    Fruit.findByIdAndRemove(req.params.id, (err, fruit) => {
         // redirect user back to index page
         res.redirect("/fruits")
     })
